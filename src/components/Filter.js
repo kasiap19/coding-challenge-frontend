@@ -1,10 +1,11 @@
 import React from 'react';
 import '../scss/main.scss';
+import $ from 'jquery';
 
 class Filter extends React.Component {
   state = {
     genre: false,
-    votes: false
+    categories: false,
   };
 
 
@@ -17,16 +18,28 @@ class Filter extends React.Component {
     this.setState({votes: !this.state.votes})
   }
 
+  test = event => {
+    event.target.parentNode.parentNode.parentNode.classList.toggle('active')
+  }
+
   render() {
     const  {genre} = this.state
     return (
-      <div class="filter">
-        <div className="filter__search search">
+      <div className="filter">
+        <div className="header-mobile">
+        <button className="hamburger" type="button">
+          <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+          <p>Discover</p>
+        </button>
+        </div>
+        <div className="filter__search search" id="search">
           <div className="search__input">
             <input placeholder="Search"></input>
           </div>
           <div className="search__year">
-            <input placeholder="Year of release"></input>
+            <input placeholder="Year of release" onClick={this.test}></input>
           </div>
         </div>
 
@@ -61,11 +74,12 @@ class Filter extends React.Component {
               </li>
             </ul>
             </div>
-            }
-            
-          </div>
+            } 
+          </div>  
+          {/* end of categories */}
+          
 
-          <div class="categories__vote">
+          <div className="categories__vote">
           <button onClick={this.toggleVote} className={this.state.votes === true ? 'active' : ''}>
             <span> Select min. vote</span>
           </button>

@@ -19,14 +19,18 @@
   @include md {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     background: $blue;
+  }
+
+  &__title, &__search, &__content {
+    position: sticky;
   }
 
   &__title {
     padding: 0px 16px;
     height: 80px;
     display: flex;
+    top: 0;
 
     h1 {
       &:after {
@@ -51,6 +55,7 @@
   &__search {
     background: $green;
     padding: 20px 16px;
+    top: 90px;
 
     span {
       &:after {
@@ -67,6 +72,10 @@
       justify-content: space-between;
       align-items: center;
     }
+  }
+
+  &__content {
+    top: 150px;
   }
 }
 
@@ -97,11 +106,11 @@
 
 .main {
   display: grid;
+  grid-gap: 20px;
 
   @include lg {
     grid-template-columns: auto 300px;
     padding: 80px 20px;
-    grid-gap: 20px;
   }
 
   &__results {
@@ -124,6 +133,14 @@
 .search {
   padding: 16px;
   background: white;
+  display: grid;
+  grid-template-columns: auto 50px;
+  grid-gap: 20px;
+  padding-bottom: 30px;
+
+  @include lg {
+    grid-template-columns: 1fr;
+  }
 
   input {
     width: 100%;
@@ -163,13 +180,28 @@
   &__year {
     &:before {
       content: '\f073';
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      pointer-events: none;
+
+      @include lg {
+        justify-content: flex-start;
+      }
     }
 
-    margin-top: 10px;
 
     @include lg {
-      margin-bottom:10px;
+      margin-bottom: 10px;
     }
+
+    ::-webkit-input-placeholder {
+      opacity: 0;
+
+      @include lg {
+        opacity: 1;
+      }
+     }
   }
 
   &__input {
@@ -181,25 +213,91 @@
 
 
 .movie {
-  &:nth-child(n+2) {
-    margin-top: 30px;
+  &:nth-child(n+3) {
+    margin-top: 10px;
+
+    @include lg {
+      margin-top: 20px;
+    }
   }
 
   padding: 16px;
   display: grid;
   background: white;
+  grid-template-columns: 100px auto;
+  grid-gap: 16px;
 
   @include lg {
     grid-template-columns: 150px auto;
+    grid-gap: 20px;
+  }
+
+  &__img {
+    img {
+      width: 100%;
+    }
   }
 }
 
 .content {
+  position: relative;
+
   &__title {
     display: flex;
     justify-content: space-between;
+    // height: 30px;
+
+    h3 {
+      color: $blue;
+      font-weight: 900;
+      margin: 0;
+      font-size: 18px;
+
+      @include md {
+        font-size: 22px;
+      }
+    }
+
+    span {
+      background: $green;
+      padding: 5px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 5px;
+      height: 20px;
+    }
+  }
+
+  &__genre {
+    span {}
+  }
+
+  &__description {
+    p {
+      font-size: 14px;
+      color: #333333;
+      max-height: 50px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;  
+
+      @include lg {
+        -webkit-line-clamp: 7;
+        max-height: 120px;
+      }
+    }
+  }
+
+
+  &__year {
+    color: $green;
+    position: absolute;
+    bottom: 0;
 
     p {
+      font-size: 12px;
       margin: 0;
     }
   }
@@ -209,6 +307,7 @@
   background: white;
   padding: 16px;
   margin-top: 16px;
+  display: none;
 
   h2 {
     font-size: 16px;
@@ -277,5 +376,51 @@
 
       height: 25px;
     }
+  }
+}
+
+.count {
+  font-size: 12px;
+  color: #777777;
+  margin-bottom: 0;
+
+  @include lg {
+    margin-top: -15px;
+    margin-bottom: 10px;
+  }
+
+}
+
+.header-mobile {
+  h4 {
+    font-weight: normal;
+    font-size: 22px;
+  }
+
+  @include md {
+    display: none;
+  }
+}
+
+.hamburger {
+  display: flex;
+  align-items: center;
+  outline: none;
+
+  p {
+    padding-left: 20px;
+    font-size: 22px;
+  }
+}
+
+.filter {
+  &.active {
+    .categories {
+      display: block;
+    }
+  }
+
+  @include lg {
+    margin-top: 10px;
   }
 }
