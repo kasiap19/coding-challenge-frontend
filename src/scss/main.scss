@@ -2,6 +2,11 @@
 
 .App {
   display: grid;
+  background: #f6f7f9;
+
+  @include md {
+    grid-auto-columns: 200px auto;
+  }
   
   @include lg {
     grid-template-columns: 250px auto;
@@ -9,8 +14,14 @@
 }
 
 .sidebar {
-  background: $blue;
-  height: 100vh;
+  display: none;
+
+  @include md {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: $blue;
+  }
 
   &__title {
     padding: 0px 16px;
@@ -81,5 +92,190 @@
 
   &__saved {
     margin-top: 40px;
+  }
+}
+
+.main {
+  display: grid;
+
+  @include lg {
+    grid-template-columns: auto 300px;
+    padding: 80px 20px;
+    grid-gap: 20px;
+  }
+
+  &__results {
+    grid-row: 2;
+
+    @include md {
+      grid-row: initial;
+    }
+  }
+
+  &__filter {
+    grid-row: 1;
+
+    @include md {
+      grid-row: inherit;
+    }
+  }
+}
+
+.search {
+  padding: 16px;
+  background: white;
+
+  input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $green;
+    padding: 10px 0;
+    color: $green;
+    // font-weight: bold;
+    font-size: 14px;
+    padding-left: 30px;
+
+    &:focus {
+      outline: none;
+      color: $green;
+    }
+  }
+
+  ::placeholder { 
+    color: $green;
+    font-size: 14px;
+  }
+
+  &__year, &__input {
+    &:before {
+      font-family: "Font Awesome 5 Free";
+      font-size: 18px;
+      font-weight: bold;
+      position: absolute;
+      color: $green;
+    }
+
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  &__year {
+    &:before {
+      content: '\f073';
+    }
+
+    margin-top: 10px;
+
+    @include lg {
+      margin-bottom:10px;
+    }
+  }
+
+  &__input {
+    &:before {
+      content: '\f002';
+    }
+  }
+}
+
+
+.movie {
+  &:nth-child(n+2) {
+    margin-top: 30px;
+  }
+
+  padding: 16px;
+  display: grid;
+  background: white;
+
+  @include lg {
+    grid-template-columns: 150px auto;
+  }
+}
+
+.content {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.categories {
+  background: white;
+  padding: 16px;
+  margin-top: 16px;
+
+  h2 {
+    font-size: 16px;
+    color: $blue;
+    margin: 0;
+  }
+
+  button {
+    &:before {
+      content: '\f067';
+      font-family: "Font Awesome 5 Free";
+      font-size: 16px;
+      position: absolute;
+      font-weight: bold;
+      color: $blue;
+      lefT: 0;
+      transition: .3s;
+    }
+
+    background: transparent;
+    border: none;
+    color: $blue;
+    position: relative;
+    display: flex;
+    padding-left: 25px;
+    align-items: center;
+    margin-top: 10px; 
+    transition: .3s;
+
+    &.active {
+      font-weight: bold;
+
+      &:before {
+        content: '\f068';
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      color: #2f5263;
+      cursor: pointer;
+
+      &:before {
+        color: #2f5263;
+      }
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0; 
+    
+    li {
+      label {
+        span {
+          padding-left: 10px;
+        }
+      }
+
+      height: 25px;
+    }
   }
 }
