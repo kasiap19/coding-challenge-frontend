@@ -1,0 +1,85 @@
+@import './settings';
+
+.App {
+  display: grid;
+  
+  @include lg {
+    grid-template-columns: 250px auto;
+  }
+}
+
+.sidebar {
+  background: $blue;
+  height: 100vh;
+
+  &__title {
+    padding: 0px 16px;
+    height: 80px;
+    display: flex;
+
+    h1 {
+      &:after {
+        content: '\f107';
+        font-family: "Font Awesome 5 Free";
+        font-size: 30px;
+        position: relative;
+        top: 3px;
+      }
+
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      font-size: 22px;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%; 
+    }
+  }
+
+  &__search {
+    background: $green;
+    padding: 20px 16px;
+
+    span {
+      &:after {
+        content: '\f002';
+        font-family: "Font Awesome 5 Free";
+        font-size: 20px;
+        position: relative;
+        font-weight: bold;
+      }
+
+      color: white;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.s-content {
+  color: white;
+  padding: 16px;
+
+  h2 {
+    font-size: 18px;
+    line-height: 40px;
+    border-bottom: 1px solid rgba(255,255,255,.3);
+  }
+
+  p {
+    display: flex;
+    flex-direction: column;
+    color: #afb9bd;
+    
+    span {
+      line-height: 32px;
+    }
+  }
+
+  &__saved {
+    margin-top: 40px;
+  }
+}
