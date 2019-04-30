@@ -2,10 +2,17 @@ import React from 'react';
 import '../scss/main.scss';
 
 class SingleMovie extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
+    // console.log(this.props)
+    
     return (
       <div className="movie">
-        <div className="movie__img" key={this.props.movie.id}>
+      {this.props.movies}
+        <div className="movie__img">
           <img src={this.props.movie.poster_path} alt={this.props.movie.title}></img>
         </div>
         <div className="movie__content content">
@@ -14,7 +21,7 @@ class SingleMovie extends React.Component {
             <span>{this.props.movie.vote_average}</span>
           </div>
           <div className="content__genre">
-            gender
+            <b>{this.props.movie.genre_ids}</b>
           </div>
           <div className="content__description">
             <p>{this.props.movie.overview}</p>

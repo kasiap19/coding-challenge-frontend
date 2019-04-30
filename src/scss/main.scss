@@ -266,11 +266,13 @@
       font-weight: bold;
       border-radius: 5px;
       height: 20px;
+      min-width: 20px;
+      display: flex;
+      justify-content: center;
     }
   }
 
   &__genre {
-    span {}
   }
 
   &__description {
@@ -309,10 +311,31 @@
   margin-top: 16px;
   display: none;
 
+  @include lg {
+    display: block;
+  }
+
   h2 {
     font-size: 16px;
     color: $blue;
     margin: 0;
+  }
+
+  &__genre {
+    ul {
+      list-style: none;
+      padding-left: 0; 
+      
+      li {
+        label {
+          span {
+            padding-left: 10px;
+          }
+        }
+    
+        height: 25px;
+      }
+    }
   }
 
   button {
@@ -360,21 +383,6 @@
 
     span {
       font-size: 14px;
-    }
-  }
-
-  ul {
-    list-style: none;
-    padding-left: 0; 
-    
-    li {
-      label {
-        span {
-          padding-left: 10px;
-        }
-      }
-
-      height: 25px;
     }
   }
 }
